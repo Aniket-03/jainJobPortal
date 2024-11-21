@@ -93,10 +93,11 @@ export const login = async (req, res) => {
         }
         console.log('tokenOnLogin',token)
        return res.cookie("token", token, {
-            maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
-            secure: false, // Use 'false' for HTTP on localhost; set to 'true' for HTTPS
-            sameSite: 'none' // Allows cookies for top-level navigation
-        }).json({
+        maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
+        httpOnly: true, // Prevents JavaScript access to cookies
+        secure: process.env.NODE_ENV === "production", // Use HTTPS in production
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Allows cross-site cookies in production
+    }).json({
             message: `Welcome back ${user.fullname}`,
             user,
             success: true

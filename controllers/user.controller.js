@@ -93,11 +93,10 @@ export const login = async (req, res) => {
         }
         console.log('tokenOnLogin',token)
        return res.cookie("token", token, {
-        maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
-        httpOnly: true, // Prevents JavaScript access to cookies
-        secure: process.env.NODE_ENV === "production", // Use HTTPS in production
-        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Allows cross-site cookies in production
-        Domain : "jainjobportal.netlify.app"
+        httpOnly: true ,
+        secure: true,
+        sameSite: 'none',
+        domain : "jainjobportal.netlify.app"
     }).json({
             message: `Welcome back ${user.fullname}`,
             user,

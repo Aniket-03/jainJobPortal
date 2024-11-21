@@ -95,8 +95,7 @@ export const login = async (req, res) => {
        return res.cookie("token", token, {
         httpOnly: true ,
         secure: true,
-        sameSite: 'none',
-        domain : "jainjobportal.netlify.app"
+        sameSite: 'none'
     }).json({
             message: `Welcome back ${user.fullname}`,
             user,

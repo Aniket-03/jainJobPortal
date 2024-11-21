@@ -97,7 +97,7 @@ export const login = async (req, res) => {
         httpOnly: true, // Prevents JavaScript access to cookies
         secure: process.env.NODE_ENV === "production", // Use HTTPS in production
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Allows cross-site cookies in production
-        Domain : "https://jainjobportal.netlify.app/"
+        Domain : "jainjobportal.netlify.app"
     }).json({
             message: `Welcome back ${user.fullname}`,
             user,

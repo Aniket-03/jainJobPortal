@@ -91,12 +91,22 @@ export const login = async (req, res) => {
             role: user.role,
             profile: user.profile
         }
-
-        return res.status(200).cookie("token", token, { maxAge: 1 * 24 * 60 * 60 * 1000 }).json({
+        console.log('tokenOnLogin',token)
+       return res.cookie("token", token, {
+            maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
+            httpOnly: true, // Prevent access from JavaScript
+            secure: false, // Use 'false' for HTTP on localhost; set to 'true' for HTTPS
+            sameSite: 'lax' // Allows cookies for top-level navigation
+        }).json({
             message: `Welcome back ${user.fullname}`,
             user,
             success: true
         })
+        // return res.status(200).cookie("token", token, { maxAge: 1 * 24 * 60 * 60 * 1000 }).json({
+        //     message: `Welcome back ${user.fullname}`,
+        //     user,
+        //     success: true
+        // })
     } catch (error) {
         console.log(error);
     }

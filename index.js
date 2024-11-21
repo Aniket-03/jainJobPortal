@@ -43,7 +43,7 @@ app.listen(PORT, () => {
 cron.schedule("*/15 * * * *", async () => {
   try {
     const response = await axios.get(
-      "http://localhost:8000/api/v1/dummy/getDummy"
+      "https://jainjobportal.onrender.com/api/v1/dummy/getDummy"
     );
     console.log("API call successful:", response.data);
   } catch (error) {
